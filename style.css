@@ -1,0 +1,54 @@
+:root {
+    --ifam-green: #2ecc71;
+    --sidebar-color: #1a1c29;
+    --accent-purple: #ffffff;
+    --text-light: #f9fafb;
+    --bg-gray: #f3f4f6;
+}
+
+body { 
+    margin: 0; padding: 0; 
+    font-family: 'Inter', 'Segoe UI', sans-serif; 
+    display: flex; height: 100vh; background: var(--bg-gray);
+}
+
+aside {
+    width: 280px; background: var(--sidebar-color);
+    color: var(--text-light); display: flex;
+    flex-direction: column; padding: 30px 20px;
+}
+
+.brand { border-bottom: 1px solid #333; margin-bottom: 30px; padding-bottom: 20px; }
+.brand h2 { color: var(--accent-purple); margin: 0; font-size: 24px; }
+.brand span { font-size: 12px; opacity: 0.6; }
+
+.nav-link {
+    padding: 15px; border-radius: 10px; cursor: pointer;
+    transition: 0.3s; margin-bottom: 8px; display: block;
+    color: inherit;
+}
+.nav-link:hover { background: #2a2b3e; }
+.nav-link.active { background: var(--accent-purple); font-weight: bold; }
+
+main { flex: 1; display: flex; flex-direction: column; padding: 25px; overflow: hidden; }
+
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+.status-badge {
+    background: white; padding: 8px 15px; border-radius: 20px; 
+    font-size: 14px; border: 1px solid #eee; display: flex; align-items: center; gap: 8px;
+}
+
+.dot { width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; }
+
+.chat-container {
+    flex: 1; background: white; border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow: hidden; border: 1px solid #e5e7eb;
+}
+
+iframe { width: 100%; height: 100%; border: none; }
+
+.footer-info {
+    font-size: 12px; text-align: center; color: #9ca3af; padding-top: 15px;
+}

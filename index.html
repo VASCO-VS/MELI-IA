@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MELI-IA | Portal da Biblioteca IFAM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside>
+        <div class="brand">
+            <h2>MELI-IA</h2>
+            <span>Chatbot Inteligente | IFAM</span>
+       <!--</div>
+        <div class="nav-link" onclick="navegar('dashboard')">Dashboard</div>
+        <div class="nav-link" onclick="navegar('livros')">Acervo de Livros</div>
+        <div class="nav-link active" onclick="navegar('chat')">Conversar com IA</div>
+        <div class="nav-link" onclick="navegar('config')">Configurações</div>-->
+    </aside> 
+
+    <main>
+        <header>
+            <div>
+                <h3 id="titulo-pagina">Assistente de Pesquisa</h3>
+                <p id="subtitulo-pagina" style="color:#6b7280; font-size: 14px; margin: 5px 0 0 0;">
+                    Inicie uma conversa para localizar materiais na biblioteca.
+                </p>
+            </div>
+            <div class="status-badge">
+                <span class="dot"></span> Sistema Online
+            </div>
+        </header>
+
+        <section class="chat-container">
+         <iframe id="chat-iframe" src="" allow="microphone;"></iframe>
+        </section>
+
+        <div class="footer-info">
+             IFAM CMZL 2026
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
