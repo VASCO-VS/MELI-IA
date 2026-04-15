@@ -1,54 +1,411 @@
+/* ==========================================================
+   VARIÁVEIS DE CORES E TEMAS (Design System)
+   ========================================================== */
 :root {
-    --ifam-green: #2ecc71;
-    --sidebar-color: #1a1c29;
-    --accent-purple: #ffffff;
-    --text-light: #f9fafb;
+    --ifam-red: #d32f2f;     /* Vermelho institucional do IFAM */
+    --ifam-green: #2ecc71;   /* Verde institucional do IFAM */
+    --white: #ffffff;
     --bg-gray: #f3f4f6;
+
+    /* Definições do Modo Claro */
+    --bg-main: #f3f4f6;
+    --bg-card: #ffffff;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    
+    /* Variáveis que mudam conforme o tema */
+    --cor-lateral: #d32f2f;      /* Inicia com Vermelho */
+    --cor-detalhe-chat: #2ecc71; /* Inicia com Verde */
 }
 
+/* Configurações específicas para o Modo Escuro */
+[data-theme="dark"] {
+    --bg-main: #0f172a;        /* Azul Marinho Profundo */
+    --text-primary: #f8fafc;   /* Texto Claro */
+    --text-secondary: #94a3b8; /* Texto Secundário */
+    
+    /* Inversão de cores solicitada: Lateral Verde e Chat Vermelho */
+    --cor-lateral: #1b5e20;      
+    --cor-detalhe-chat: #d32f2f; 
+}
+
+/* ==========================================================
+   RESPONSIVIDADE (ADAPTAÇÃO PARA CELULAR E TABLET)
+   ========================================================== */
+
+/* Quando a tela for menor que 768px (Celulares e Tablets na vertical) */
+@media (max-width: 768px) {
+    
+    body {
+        flex-direction: column; /* Empilha a barra lateral em cima do chat */
+        overflow-x: hidden;
+    }
+
+    aside {
+        width: 100%; /* Sidebar ocupa a largura toda em cima */
+        height: auto;
+        padding: 40px 20px 20px 20px;
+        box-sizing: border-box;
+    }
+
+    /* Esconde o significado longo da sigla no celular para ganhar espaço */
+    .brand p {
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Faz as sugestões de perguntas ficarem em duas colunas no celular */
+    .sugestoes-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .card-sugestao {
+        padding: 10px;
+        font-size: 11px;
+    }
+
+    main {
+        padding: 10px;
+        height: 60vh; /* Ajusta a altura do chat no celular */
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* Esconde as logos de desenvolvimento no celular para não poluir a tela */
+    .equipe-logos-horizontal {
+        justify-content: center;
+    }
+    
+    .item-logo-circular {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Ajusta a faixa BETA para não tapar o menu no celular */
+    .faixa-beta {
+        font-size: 10px;
+        width: 150px;
+        top: 15px;
+    }
+}
+
+/* Para celulares bem pequenos (iPhone SE, etc) */
+@media (max-width: 480px) {
+    .sugestoes-grid {
+        grid-template-columns: 1fr; /* Volta para uma coluna só */
+    }
+    
+    .brand h2 {
+        font-size: 24px;
+    }
+}
+
+/* ==========================================================
+   ESTILOS DE LAYOUT (Estrutura Base)
+   ========================================================== */
 body { 
-    margin: 0; padding: 0; 
-    font-family: 'Inter', 'Segoe UI', sans-serif; 
-    display: flex; height: 100vh; background: var(--bg-gray);
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    display: flex; 
+    height: 100vh; 
+    background: var(--bg-gray);
 }
 
+/* ==========================================================
+   FAIXA NO CANTO (TESTE BETA)
+   ========================================================== */
+.faixa-beta {
+    /* Posicionamento fixo no canto superior esquerdo */
+    position: fixed;
+    top:20px;
+    left: -10px;
+    
+    /* Tamanho e rotação para criar o efeito de faixa inclinada */
+    width:360px;
+    padding: 100 0;
+    transform: rotate(-08deg);
+    
+    /* Configurações do Texto */
+    text-align:center;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 1000; /* Garante que a faixa fique acima de tudo */
+    
+    /* Sombras para dar profundidade */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    
+    /* Transições suaves para a troca de tema */
+    transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* --- Cores conforme o TEMA --- */
+
+/* MODO CLARO (Default) */
+.faixa-beta {
+    background-color: #2ecc71; /* Fundo Verde (IFAM-Green) */
+    color: #ffffff;            /* Texto Branco */
+}
+
+/* MODO ESCURO */
+[data-theme="dark"] .faixa-beta {
+    background-color: #d32f2f; /* Fundo Vermelho (IFAM-Red) */
+    color: #ffffff;            /* Texto Branco */
+}
+
+/* Barra Lateral Esquerda */
 aside {
-    width: 280px; background: var(--sidebar-color);
-    color: var(--text-light); display: flex;
-    flex-direction: column; padding: 30px 20px;
+    width: 300px; 
+    background: var(--cor-lateral);
+    color: var(--white); 
+    display: flex;
+    flex-direction: column; 
+    /* Padding superior maior para empurrar o conteúdo para baixo */
+    padding: 60px 25px 25px 25px; 
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    transition: background-color 0.6s ease;
 }
 
-.brand { border-bottom: 1px solid #333; margin-bottom: 30px; padding-bottom: 20px; }
-.brand h2 { color: var(--accent-purple); margin: 0; font-size: 24px; }
-.brand span { font-size: 12px; opacity: 0.6; }
-
-.nav-link {
-    padding: 15px; border-radius: 10px; cursor: pointer;
-    transition: 0.3s; margin-bottom: 8px; display: block;
-    color: inherit;
+/* Seção de Identidade (Logo e Nome) */
+.brand {
+    margin-top: 20px; 
+    text-align: left;
 }
-.nav-link:hover { background: #2a2b3e; }
-.nav-link.active { background: var(--accent-purple); font-weight: bold; }
 
-main { flex: 1; display: flex; flex-direction: column; padding: 25px; overflow: hidden; }
+.brand h2 { 
+    margin: 0; 
+    font-size: 32px; 
+    color: var(--white); 
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 
-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.brand p { 
+    font-size: 15px; 
+    line-height: 1.4; 
+    margin-top: -3px; 
+    opacity: 0.9;
+    font-weight: 300;
+}
 
+/* Linha separadora horizontal */
+.divisor {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+
+/* Títulos das subseções na sidebar */
+.secao-titulo {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    opacity: 0.8;
+    color: white;
+}
+
+/* ==========================================================
+   CARDS DE SUGESTÃO E LINKS
+   ========================================================== */
+.sugestoes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Estilo dos botões clicáveis de pergunta */
+.card-sugestao {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-sugestao i {
+    width: 20px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.card-sugestao:hover {
+    background: rgba(0, 0, 0, 0.15); /* Efeito de destaque no hover */
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Grupo de links externos */
+.links-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.link-clicavel {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.link-clicavel:hover { 
+    text-decoration: underline; 
+}
+
+/* ==========================================================
+   LOGOS DOS DESENVOLVEDORES (Horizontal)
+   ========================================================== */
+.equipe-logos-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+/* Moldura circular branca para as logos */
+.item-logo-circular {
+    background-color: white; 
+    width: 65px;           
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.item-logo-circular:hover {
+    transform: scale(1.1);
+}
+
+.item-logo-circular img {
+    max-width: 130%;
+    max-height: 130%;
+    object-fit: contain;
+}
+
+/* ==========================================================
+   ÁREA DO CONTEÚDO PRINCIPAL (Header e Chat)
+   ========================================================== */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: var(--bg-main);
+    transition: background-color 0.3s ease;
+}
+
+/* Cabeçalho superior */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom: 20px;
+}
+
+#titulo-pagina {
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+/* Badge indicadora de status online */
 .status-badge {
-    background: white; padding: 8px 15px; border-radius: 20px; 
-    font-size: 14px; border: 1px solid #eee; display: flex; align-items: center; gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.dot { width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; }
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    position: relative;
+}
 
+/* Efeito pulsar na bolinha de status */
+.status-dot::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: pulsar 2s infinite;
+}
+
+@keyframes pulsar {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ==========================================================
+   CONTAINER DO CHAT (Meli-IA)
+   ========================================================== */
 .chat-container {
-    flex: 1; background: white; border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    overflow: hidden; border: 1px solid #e5e7eb;
+    flex: 1;
+    background-color: #ffffff !important; /* Sempre branco conforme pedido */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* Listra colorida no topo que alterna com o tema */
+    border-top: 6px solid var(--cor-detalhe-chat); 
+    border-left: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    transition: border-color 0.3s ease;
 }
 
-iframe { width: 100%; height: 100%; border: none; }
+#chat-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    flex: 1;
+    background-color: #ffffff;
+}
 
-.footer-info {
-    font-size: 12px; text-align: center; color: #9ca3af; padding-top: 15px;
+/* Rodapé de informações */
+.footer-info { 
+    text-align: center; 
+    font-size: 11px; 
+    color: #999; 
+    padding: 10px; 
 }

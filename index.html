@@ -5,35 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MELI-IA | Portal da Biblioteca IFAM</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
+    <div class="faixa-beta">Em Desenvolvimento<br>(VERSÃO BETA)</div>
     <aside>
         <div class="brand">
             <h2>MELI-IA</h2>
-            <span>Chatbot Inteligente | IFAM</span>
-       <!--</div>
-        <div class="nav-link" onclick="navegar('dashboard')">Dashboard</div>
-        <div class="nav-link" onclick="navegar('livros')">Acervo de Livros</div>
-        <div class="nav-link active" onclick="navegar('chat')">Conversar com IA</div>
-        <div class="nav-link" onclick="navegar('config')">Configurações</div>-->
+            <p>Mediadora Educacional de Linguagem Interativa em Inteligência Artificial</p>
+        </div>
+
+        <div class="divisor"></div>
+
+        <div class="secao-titulo">Sugestões de Perguntas</div>
+        <div class="sugestoes-grid">
+            <div class="card-sugestao" onclick="enviarSugestao('Quais são os horários de funcionamento da biblioteca?')">
+                <i class="fas fa-clock"></i> Horários de Funcionamento
+            </div>
+            
+            <div class="card-sugestao" onclick="enviarSugestao('Como posso fazer o empréstimo de um livro?')">
+                <i class="fas fa-book-reader"></i> Como fazer empréstimos de livros
+            </div>
+            
+            <div class="card-sugestao" onclick="enviarSugestao('Onde encontro livros de Engenharia de Software e Programação?')">
+                <i class="fas fa-code"></i> Livros de Tecnologia/Engenharia
+            </div>
+            
+            <div class="card-sugestao" onclick="enviarSugestao('Como acessar o acervo digital da biblioteca?')">
+                <i class="fas fa-laptop-code"></i> Acesso ao Acervo Digital
+            </div>
+        </div>
+
+        <div class="divisor"></div>
+
+        <div class="links-grupo">
+    <a href="https://drive.google.com/file/d/1maRc5YOnKpoOsT0HSrgO7GN1WtYw1Fd_/view?usp=drive_link" 
+       class="link-clicavel" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="fas fa-link"></i> Guia da Biblioteca
+    </a>
+
+    <a href="https://www2.ifam.edu.br/campus/cmzl" 
+       class="link-clicavel" 
+       target="_blank" 
+       rel="noopener noreferrer">
+       <i class="fas fa-link"></i> Pagina IFAM - Campus Manaus Zona Leste
+    </a>
+</div>
+
+        <div class="divisor"></div>
+
+        <div class="secao-titulo">Desenvolvido por:</div>
+        <div class="equipe-logos-horizontal">
+            <div class="item-logo-circular">
+                <img src="imgs/logo-biblioteca.png" alt="Biblioteca">
+            </div>
+            
+            <div class="item-logo-circular">
+                <img src="imgs/logo-es.png" alt="Engenharia de Software">
+            </div>
+            
+            <div class="item-logo-circular">
+                <img src="imgs/logo-ifam.png" alt="IFAM">
+            </div>
+        </div>
     </aside> 
 
     <main>
         <header>
-            <div>
+            <div class="header-left">
                 <h3 id="titulo-pagina">Assistente de Pesquisa</h3>
-                <p id="subtitulo-pagina" style="color:#6b7280; font-size: 14px; margin: 5px 0 0 0;">
-                    Inicie uma conversa para localizar materiais na biblioteca.
-                </p>
+                <p id="subtitulo-pagina" style="color: var(--text-secondary);">Inicie uma conversa...</p>
             </div>
-            <div class="status-badge">
-                <span class="dot"></span> Sistema Online
+            
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="theme-toggle" style="background: none; border: none; cursor: pointer; font-size: 20px;">
+                    <i class="fas fa-moon" id="theme-icon" style="color: var(--text-secondary);"></i>
+                </button>
+
+                <div class="status-badge">
+                    <span class="status-dot"></span> MELI-IA Online
+                </div>
             </div>
         </header>
 
         <section class="chat-container">
-         <iframe id="chat-iframe" src="" allow="microphone;"></iframe>
+            <iframe id="chat-iframe" src="" allow="microphone;"></iframe>
         </section>
 
         <div class="footer-info">
