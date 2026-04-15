@@ -37,7 +37,7 @@ function iniciarNovoChat() {
 window.onload = iniciarNovoChat;
 
 /* ==========================================================
-   LÓGICA DE ALTERNÂNCIA DE TEMA (DARK/LIGHT MODE)
+   LÓGICA DE ALTERNÂNCIA DE TEMA (DARK/LIGHT MODE).
    ========================================================== */
 
 const themeToggle = document.getElementById('theme-toggle');

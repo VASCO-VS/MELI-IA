@@ -1,3 +1,43 @@
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    aside {
+        width: 100%;
+        /* Diminuímos o padding no topo para o iPhone */
+        padding: 40px 15px 15px 15px; 
+        box-shadow: none;
+        border-bottom: 2px solid rgba(0,0,0,0.1);
+    }
+
+    /* Melhora o scroll lateral nas logos dos desenvolvedores */
+    .equipe-logos-horizontal {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+    }
+
+    main {
+        padding: 15px;
+        /* Garante que o chat ocupe o espaço restante sem vazar a tela */
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-container {
+        flex: 1; /* Força o chat a esticar o máximo possível */
+        margin-bottom: 5px;
+    }
+
+    /* Aumenta os cards de sugestão para facilitar o toque com o polegar (Touch Target) */
+    .card-sugestao {
+        min-height: 44px; /* Tamanho mínimo recomendado pela Apple */
+        font-size: 14px;
+    }
+}
 /* ==========================================================
    VARIÁVEIS DE CORES E TEMAS (Design System)
    ========================================================== */
@@ -28,87 +68,6 @@
     --cor-lateral: #1b5e20;      
     --cor-detalhe-chat: #d32f2f; 
 }
-
-/* ==========================================================
-   RESPONSIVIDADE (ADAPTAÇÃO PARA CELULAR E TABLET)
-   ========================================================== */
-
-/* Quando a tela for menor que 768px (Celulares e Tablets na vertical) */
-@media (max-width: 768px) {
-    
-    body {
-        flex-direction: column; /* Empilha a barra lateral em cima do chat */
-        overflow-x: hidden;
-    }
-
-    aside {
-        width: 100%; /* Sidebar ocupa a largura toda em cima */
-        height: auto;
-        padding: 40px 20px 20px 20px;
-        box-sizing: border-box;
-    }
-
-    /* Esconde o significado longo da sigla no celular para ganhar espaço */
-    .brand p {
-        font-size: 13px;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    /* Faz as sugestões de perguntas ficarem em duas colunas no celular */
-    .sugestoes-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-
-    .card-sugestao {
-        padding: 10px;
-        font-size: 11px;
-    }
-
-    main {
-        padding: 10px;
-        height: 60vh; /* Ajusta a altura do chat no celular */
-    }
-
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    /* Esconde as logos de desenvolvimento no celular para não poluir a tela */
-    .equipe-logos-horizontal {
-        justify-content: center;
-    }
-    
-    .item-logo-circular {
-        width: 50px;
-        height: 50px;
-    }
-
-    /* Ajusta a faixa BETA para não tapar o menu no celular */
-    .faixa-beta {
-        font-size: 10px;
-        width: 150px;
-        top: 15px;
-    }
-}
-
-/* Para celulares bem pequenos (iPhone SE, etc) */
-@media (max-width: 480px) {
-    .sugestoes-grid {
-        grid-template-columns: 1fr; /* Volta para uma coluna só */
-    }
-    
-    .brand h2 {
-        font-size: 24px;
-    }
-}
-
 /* ==========================================================
    ESTILOS DE LAYOUT (Estrutura Base)
    ========================================================== */
