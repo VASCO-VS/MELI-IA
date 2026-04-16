@@ -1,4 +1,20 @@
-/**
+const menuToggle = document.getElementById('menu-toggle');
+const sidebar = document.getElementById('sidebar');
+const mainContent = document.getElementById('main-content');
+
+// Iniciar fechado se for celular
+if (window.innerWidth <= 768) {
+    sidebar.classList.add('closed');
+}
+
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('closed');
+    // No PC, o chat estica. No mobile, ele já é 100%.
+    if (window.innerWidth > 768) {
+        mainContent.classList.toggle('full-width');
+    }
+});/**
+
  * Função para enviar uma pergunta sugerida diretamente para o Chatbot
  */
 function enviarSugestao(texto) {

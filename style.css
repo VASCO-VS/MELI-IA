@@ -1,331 +1,203 @@
-@media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
-    aside {
-        width: 100%;
-        /* Diminuímos o padding no topo para o iPhone */
-        padding: 40px 15px 15px 15px; 
-        box-shadow: none;
-        border-bottom: 2px solid rgba(0,0,0,0.1);
-    }
-
-    /* Melhora o scroll lateral nas logos dos desenvolvedores */
-    .equipe-logos-horizontal {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 5px;
-        -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
-    }
-
-    main {
-        padding: 15px;
-        /* Garante que o chat ocupe o espaço restante sem vazar a tela */
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .chat-container {
-        flex: 1; /* Força o chat a esticar o máximo possível */
-        margin-bottom: 5px;
-    }
-
-    /* Aumenta os cards de sugestão para facilitar o toque com o polegar (Touch Target) */
-    .card-sugestao {
-        min-height: 44px; /* Tamanho mínimo recomendado pela Apple */
-        font-size: 14px;
-    }
-}
 /* ==========================================================
-   VARIÁVEIS DE CORES E TEMAS (Design System)
-   ========================================================== */
-:root {
-    --ifam-red: #d32f2f;     /* Vermelho institucional do IFAM */
-    --ifam-green: #2ecc71;   /* Verde institucional do IFAM */
-    --white: #ffffff;
-    --bg-gray: #f3f4f6;
-
-    /* Definições do Modo Claro */
-    --bg-main: #f3f4f6;
-    --bg-card: #ffffff;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
-    
-    /* Variáveis que mudam conforme o tema */
-    --cor-lateral: #d32f2f;      /* Inicia com Vermelho */
-    --cor-detalhe-chat: #2ecc71; /* Inicia com Verde */
-}
-
-/* Configurações específicas para o Modo Escuro */
-[data-theme="dark"] {
-    --bg-main: #0f172a;        /* Azul Marinho Profundo */
-    --text-primary: #f8fafc;   /* Texto Claro */
-    --text-secondary: #94a3b8; /* Texto Secundário */
-    
-    /* Inversão de cores solicitada: Lateral Verde e Chat Vermelho */
-    --cor-lateral: #1b5e20;      
-    --cor-detalhe-chat: #d32f2f; 
-}
-/* ==========================================================
-   ESTILOS DE LAYOUT (Estrutura Base)
-   ========================================================== */
-body { 
-    margin: 0; 
-    padding: 0; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    display: flex; 
-    height: 100vh; 
-    background: var(--bg-gray);
-}
-
-/* ==========================================================
-   FAIXA NO CANTO (TESTE BETA)
+   FAIXA NO CANTO SUPERIOR DIREITO
    ========================================================== */
 .faixa-beta {
-    /* Posicionamento fixo no canto superior esquerdo */
+    /* Posicionamento fixo no canto superior DIREITO */
     position: fixed;
-    top:20px;
-    left: -10px;
+    top: 10px;
+    right: 110px; /* Mudamos de left para right */
     
-    /* Tamanho e rotação para criar o efeito de faixa inclinada */
-    width:360px;
-    padding: 100 0;
-    transform: rotate(-08deg);
+    /* Tamanho e rotação (invertida para o outro lado) */
+    width: 360px;
+    padding: 20px ;
+    transform: rotate(25deg); /* Rotação positiva para o canto direito */
+    
+    /* Cores Originais (Verde IFAM) */
+    background-color: #2ecc71; 
+    color: #ffffff;
     
     /* Configurações do Texto */
-    text-align:center;
-    font-size: 13px;
+    text-align: center;
+    font-size: 19px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    z-index: 1000; /* Garante que a faixa fique acima de tudo */
+    line-height: 1.2;
     
-    /* Sombras para dar profundidade */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    /* Z-index alto para ficar acima de tudo */
+    z-index: 4000; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     
-    /* Transições suaves para a troca de tema */
-    transition: background-color 0.6s ease, color 0.6s ease;
+    /* Não interfere nos cliques */
+    pointer-events: none; 
 }
 
-/* --- Cores conforme o TEMA --- */
-
-/* MODO CLARO (Default) */
-.faixa-beta {
-    background-color: #2ecc71; /* Fundo Verde (IFAM-Green) */
-    color: #ffffff;            /* Texto Branco */
-}
-
-/* MODO ESCURO */
+/* Ajuste para o MODO ESCURO */
 [data-theme="dark"] .faixa-beta {
-    background-color: #d32f2f; /* Fundo Vermelho (IFAM-Red) */
-    color: #ffffff;            /* Texto Branco */
+    background-color: #d32f2f;
 }
 
-/* Barra Lateral Esquerda */
-aside {
-    width: 300px; 
-    background: var(--cor-lateral);
-    color: var(--white); 
+@media (max-width: 768px) {
+    .faixa-beta {
+        top: 20px;
+        right: -130px; /* Ajuste fino para não cobrir muito o botão de menu */
+        font-size: 11px;
+    }
+}
+:root {
+    --ifam-red: #d32f2f;
+    --ifam-green: #2ecc71;
+    --white: #ffffff;
+    --bg-main: #f3f4f6;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --cor-lateral: #d32f2f;
+    --cor-detalhe-chat: #2ecc71;
+}
+
+[data-theme="dark"] {
+    --bg-main: #0f172a;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --cor-lateral: #1b5e20;
+    --cor-detalhe-chat: #d32f2f;
+}
+
+body {
+    margin: 0;
     display: flex;
-    flex-direction: column; 
-    /* Padding superior maior para empurrar o conteúdo para baixo */
-    padding: 60px 25px 25px 25px; 
-    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-    transition: background-color 0.6s ease;
+    height: 100vh;
+    font-family: sans-serif;
+    background: var(--bg-main);
+    overflow: hidden;
 }
 
-/* Seção de Identidade (Logo e Nome) */
-.brand {
-    margin-top: 20px; 
-    text-align: left;
-}
-
-.brand h2 { 
-    margin: 0; 
-    font-size: 32px; 
-    color: var(--white); 
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.brand p { 
-    font-size: 15px; 
-    line-height: 1.4; 
-    margin-top: -3px; 
-    opacity: 0.9;
-    font-weight: 300;
-}
-
-/* Linha separadora horizontal */
-.divisor {
-    height: 1px;
-    background: rgba(0, 0, 0, 0.2);
-    margin: 10px 0;
-}
-
-/* Títulos das subseções na sidebar */
-.secao-titulo {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    opacity: 0.8;
+/* BOTÃO DE MENU */
+.menu-button {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 3000;
+    background: var(--ifam-red);
     color: white;
-}
-
-/* ==========================================================
-   CARDS DE SUGESTÃO E LINKS
-   ========================================================== */
-.sugestoes-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-/* Estilo dos botões clicáveis de pergunta */
-.card-sugestao {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 15px;
-    border-radius: 12px;
-    font-size: 13px;
-    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
 }
 
-.card-sugestao i {
-    width: 20px;
-    text-align: center;
-    opacity: 0.8;
-}
-
-.card-sugestao:hover {
-    background: rgba(0, 0, 0, 0.15); /* Efeito de destaque no hover */
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* Grupo de links externos */
-.links-grupo {
+/* BARRA LATERAL (ASIDE) */
+aside {
+    width: 300px;
+    background: var(--cor-lateral);
+    color: white;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2000;
+    padding: 70px 20px 20px 20px;
+    box-sizing: border-box;
+    transition: transform 0.4s ease;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
-.link-clicavel {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 14px;
+/* Quando fechada, ela vai para a esquerda */
+aside.closed {
+    transform: translateX(-100%);
+}
+
+/* CONTEÚDO PRINCIPAL (MAIN) */
+main {
+    flex: 1;
+    margin-left: 300px; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 15px; /* Reduzido de 20px para subir o conteúdo */
+    box-sizing: border-box;
+    background-color: var(--bg-main);
+    transition: margin-left 0.4s ease;
+}
+
+main.full-width {
+    margin-left: 0;
+}
+
+
+/* Container que empurra tudo para a direita */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre a caixa e a lua */
+    margin-left: auto; /* Força o alinhamento na extrema direita */
+}
+
+.header-left h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text-primary);
+}
+
+.header-left p {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* Container que agrupa o Status e a Lua na Direita */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre o badge e a lua */
+    margin-left: auto; /* Garante que tudo seja empurrado para a direita */
+}
+
+.status-badge {
     display: flex;
     align-items: center;
     gap: 8px;
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    font-size: 12px;
+    font-weight: 500;
 }
 
-.link-clicavel:hover { 
-    text-decoration: underline; 
-}
-
-/* ==========================================================
-   LOGOS DOS DESENVOLVEDORES (Horizontal)
-   ========================================================== */
-.equipe-logos-horizontal {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 10px;
-    align-items: center;
-}
-
-/* Moldura circular branca para as logos */
-.item-logo-circular {
-    background-color: white; 
-    width: 65px;           
-    height: 65px;
+#theme-toggle {
+    background: #eee; /* Um fundo circular sutil para a lua */
+    border: none;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-.item-logo-circular:hover {
-    transform: scale(1.1);
-}
-
-.item-logo-circular img {
-    max-width: 130%;
-    max-height: 130%;
-    object-fit: contain;
-}
-
-/* ==========================================================
-   ÁREA DO CONTEÚDO PRINCIPAL (Header e Chat)
-   ========================================================== */
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    height: 100vh;
-    box-sizing: border-box;
-    background-color: var(--bg-main);
-    transition: background-color 0.3s ease;
-}
-
-/* Cabeçalho superior */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    margin-bottom: 20px;
-}
-
-#titulo-pagina {
-    color: var(--text-primary);
-    font-weight: bold;
-}
-
-/* Badge indicadora de status online */
-.status-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #ffffff;
-    padding: 8px 16px;
-    border-radius: 50px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
+/* Bolinha Cintilante (Mantendo a animação) */
 .status-dot {
     width: 10px;
     height: 10px;
-    background-color: #2ecc71;
+    background-color: var(--ifam-green);
     border-radius: 50%;
     position: relative;
 }
 
-/* Efeito pulsar na bolinha de status */
 .status-dot::after {
     content: '';
+    position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #2ecc71;
+    background-color: var(--ifam-green);
     border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
     animation: pulsar 2s infinite;
 }
 
@@ -334,37 +206,134 @@ header {
     100% { transform: scale(2.5); opacity: 0; }
 }
 
-/* ==========================================================
-   CONTAINER DO CHAT (Meli-IA)
-   ========================================================== */
+/* Ajuste do Rodapé para não empurrar o chat */
+.footer-info {
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-secondary);
+    padding: 5px 0;
+}
+
+/* CAIXA DA MELI-IA (Centralizada com brecha lateral) */
 .chat-container {
     flex: 1;
-    background-color: #ffffff !important; /* Sempre branco conforme pedido */
+    background: white;
     border-radius: 20px;
+    border-top: 6px solid var(--cor-detalhe-chat);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    /* Listra colorida no topo que alterna com o tema */
-    border-top: 6px solid var(--cor-detalhe-chat); 
-    border-left: 1px solid #e5e7eb;
-    border-right: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
-    transition: border-color 0.3s ease;
+
+    /* A MÁGICA PARA CENTRALIZAR COM BRECHA */
+    width: 98%;           /* Ocupa 95% da largura disponível */
+    max-width: 1200px;    /* Não deixa ficar gigante em monitores muito largos */
+    margin: 0 auto 15px auto; /* Centraliza horizontalmente e dá 15px de respiro embaixo */
 }
 
 #chat-iframe {
     width: 100%;
     height: 100%;
     border: none;
-    flex: 1;
-    background-color: #ffffff;
 }
 
-/* Rodapé de informações */
-.footer-info { 
-    text-align: center; 
-    font-size: 11px; 
-    color: #999; 
-    padding: 10px; 
+/* COMPONENTES INTERNOS DA BARRA */
+/* Container da Marca */
+.brand {
+    margin-top: 10px; /* Reduzido para subir o conteúdo */
+    text-align: left;
+}
+
+/* O Nome principal: MELI-IA */
+.brand h2 {
+    margin: 0;
+    font-size: 40px;         /* Aumentado de 32px para 42px */
+    color: var(--white);
+    font-weight: 800;        /* Deixa a fonte bem "pesada" e marcante */
+    letter-spacing: 2px;     /* Espaçamento entre as letras para dar ar moderno */
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Sombra leve para dar profundidade */
+}
+
+/* O significado da sigla (o parágrafo) */
+.brand p {
+    font-size: 16px;         /* Ajuste fino para não brigar com o título */
+    line-height: 1.3;
+    margin-top: 5px;         /* Espaço entre o nome e a descrição */
+    opacity: 0.9;
+    font-weight: 400;
+    max-width: 2000px;        /* Evita que o texto estique muito para os lados */
+}
+
+.divisor { height: 1px; background: rgb(9, 145, 70); margin: 15px 0; }
+
+.card-sugestao {
+    background: rgba(255,255,255,0.1);
+    padding: 19px;
+    border-radius: 10px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.links-grupo {
+    display: flex;
+     /* Deixa um link embaixo do outro */
+    gap: 10px;              /* Espaço entre os links */
+    margin-top: 10px;       /* O Margin-top de 10 que você pediu */
+}
+
+/* Estilo do link individual */
+.link-clicavel {
+    color: #ffffff;         /* Texto e ícone em Branco */
+    text-decoration: none;  /* Remove o sublinhado padrão */
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;              /* Espaço entre o ícone e o texto */
+    padding: 5px 0;         /* Um pequeno respiro interno */
+    transition: opacity 0.3s ease;
+}
+
+.equipe-logos-horizontal {
+    display: flex;
+    justify-content: flex-start; /* Alinha no início da barra lateral */
+    gap: 15px;                   /* Espaço entre os círculos */
+    margin-top: 15px;
+    flex-wrap: wrap;             /* Garante que não quebre o layout se ficar muito grande */
+}
+.item-logo-circular {
+    width:60px; height: 60px; background: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.item-logo-circular img { width: 120%; object-fit: contain; }
+
+/* MEDIA QUERY - CELULAR */
+@media (max-width: 768px) {
+    aside { width: 85%; }
+    
+    main { 
+        margin-left: 0; 
+        padding: 10px; 
+        padding-top: 65px; /* Espaço para o botão de menu e faixa */
+    }
+
+    header {
+        padding-left: 0;
+        flex-direction: column; /* No celular, título em cima e status embaixo */
+        gap: 8px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .faixa-beta { 
+        z-index: 4000; 
+        top: 15px;
+        right: -130px;
+    }
 }
