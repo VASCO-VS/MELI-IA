@@ -115,7 +115,7 @@ aside {
     left: 0;
     top: 0;
     z-index: 2000;
-    padding: 30px 20px 20px 20px; /* Diminuí o topo para subir os itens */
+    padding: 60px 20px 60px 20px; /* Diminuí o topo para subir os itens */
     box-sizing: border-box;
     transition: transform 0.4s ease;
     
